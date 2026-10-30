@@ -1,0 +1,22 @@
+{
+  "patches": [
+    {
+      "path": "node_modules/onnxruntime-web/dist/ort.webgpu.bundle.min.mjs",
+      "sha256": "7c93a51e9906b246af505bbfbfa4e5806ebe70a081ab0ca0d34e1180293f4f8d",
+      "find": "import(/*webpackIgnore:true*/ /*@vite-ignore*/a)",
+      "replace": "import(\"./ort-wasm-simd-threaded.jsep.mjs\")"
+    },
+    {
+      "path": "node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.jsep.mjs",
+      "sha256": "c2f80e915e9df63289788a99d434d8c4e00e64e9c1f030f4b80b022458dd2c99",
+      "find": "import(\"module\")",
+      "replace": "Promise.reject(new Error(\"Node-only ONNX runtime unavailable in browser\"))"
+    },
+    {
+      "path": "node_modules/onnxruntime-web/dist/ort-wasm-simd-threaded.jsep.mjs",
+      "sha256": "c2f80e915e9df63289788a99d434d8c4e00e64e9c1f030f4b80b022458dd2c99",
+      "find": "import(\"worker_threads\")",
+      "replace": "Promise.reject(new Error(\"Node-only ONNX runtime unavailable in browser\"))"
+    }
+  ]
+}
